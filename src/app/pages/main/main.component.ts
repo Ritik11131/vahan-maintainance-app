@@ -19,8 +19,8 @@ import { deviceSettings, moreSidebarNavigations, sidebarNavigations } from '@/ap
 
 @Component({
   selector: 'app-main',
-  imports: [CommonModule, ButtonModule, InputTextModule, CardModule, ToastModule, DividerModule, SelectModule, MultiSelectModule, 
-            AvatarModule, RouterModule, FormsModule, SelectButton, TooltipModule, OverlayBadgeModule,DrawerModule],
+  imports: [CommonModule, ButtonModule, InputTextModule, CardModule, ToastModule, DividerModule, SelectModule, MultiSelectModule,
+    AvatarModule, RouterModule, FormsModule, SelectButton, TooltipModule, OverlayBadgeModule, DrawerModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -29,31 +29,20 @@ export class MainComponent {
 
   sampleOptions: any[];
   selectedSampleOption: any;
-
   sampleAppsSidebarNavs: any = sidebarNavigations;
-
   sampleAppsSidebarNavsMore: any = moreSidebarNavigations;
-
   selectedSampleAppsSidebarNav: any = 'Overview';
-
   isSlimMenu: boolean = true;
 
-  drawerVisible: boolean = false;
-
-  deviceSettings:any[] = deviceSettings
-
   constructor(private router: Router) {
-
     this.sampleOptions = [
       { icon: 'pi pi-home', title: 'Overview', href: '/main/overview' },
     ];
     this.selectedSampleOption = this.sampleOptions[0];
-
   }
 
-  setSelectedSampleAppsSidebarNav(title: any, href:string) {
+  setSelectedSampleAppsSidebarNav(title: any, href: string) {
     this.selectedSampleAppsSidebarNav = title;
     this.router.navigate([href])
   }
-
 }

@@ -25,3 +25,60 @@
             </div>
         </div> -->
     </div>
+
+
+    <p-drawer [(visible)]="drawerVisible" [dismissible]="false" [closable]="false" position="right" styleClass="!max-w-2xl !w-full !h-screen rounded-l-2xl">
+        <ng-template #header>
+            <!-- <div class="flex items-center gap-2">
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                <span class="font-bold">Amy Elsner</span>
+            </div> -->
+        </ng-template>
+        <ng-template #content>
+            <div class="flex flex-col h-screen overflow-auto">
+                <div class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
+                    <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                        <div class="flex items-start justify-between">
+                            <div class="leading-6 font-medium text-color">Recieved Configuration</div>
+                            <!-- <p-button icon="pi pi-download text-sm" styleClass="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900 hover:opacity-75 transition-all" severity="secondary" text /> -->
+                        </div>
+                        <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
+                                @for (data of deviceSettings; track $index) {
+                                    <div class="flex items-center gap-3 p-2 bg-white dark:bg-surface-800 rounded-lg shadow-md">
+                                        <div class="flex-1">
+                                            <div class="text-sm leading-5 font-medium text-color">{{ data.name }}</div>
+                                            <div class="mt-1 text-sm leading-5 text-muted-color">{{ data.value || '-' }}</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-2/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                        <div class="flex items-start justify-between">
+                            <div class="leading-6 font-medium text-color">Saved Configuration</div>
+                            <!-- <p-button icon="pi pi-download text-sm" styleClass="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900 hover:opacity-75 transition-all" severity="secondary" text /> -->
+                        </div>
+                        <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
+                            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 p-2">
+                                @for (data of deviceSettings; track $index) {
+                                    <div class="flex flex-col p-2 bg-white dark:bg-surface-800 rounded-lg">
+                                        <label class="text-sm leading-5 font-medium text-color">{{ data.name }}</label>
+                                        <input pInputText [(ngModel)]="data.value" type="text" [placeholder]="data.placeholder" class="mt-1 p-1 border border-gray-300 rounded-md w-full dark:bg-surface-700 dark:border-gray-600" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #footer>
+            <div class="flex justify-end gap-2">
+                <p-button (onClick)="saveDeviceConfig()" label="Save" icon="pi pi-user" [outlined]="true"/>
+                <p-button (onClick)="drawerVisible = false" label="Close" icon="pi pi-sign-out" [outlined]="true" [severity]="'danger'" [text]="true"/>
+            </div>
+        </ng-template>
+    </p-drawer>
