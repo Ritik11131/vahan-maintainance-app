@@ -1,0 +1,31 @@
+<div class="flex flex-wrap gap-4 items-start justify-between p-6 border border-surface rounded-3xl">
+  @for (card of statusCards; track $index) {
+  <div class="flex items-center gap-3 p-4 border border-surface rounded-xl shadow-[0px_1px_2px_0px_rgba(18,18,23,0.05)] bg-emphasis w-full sm:w-60">
+    <p-avatar [image]="card.avatarUrl" class="rounded-lg overflow-hidden w-14 h-14"></p-avatar>
+    <div class="flex-1">
+      <div class="font-semibold leading-7">{{ card.count }}</div>
+      <div class="text-muted-color text-sm mt-1">{{ card.status }}</div>
+    </div>
+    <i [ngClass]="{
+      'text-green-500' : card.status === 'Running', 
+      'text-yellow-500' : card.status === 'Idle', 
+      'text-red-500' : card.status === 'Stopped',
+      'text-blue-500' : card.status === 'Total',
+      'text-gray-500' : card.status === 'Offline',
+      '' : card.status === 'Never Connected',
+      }" class="pi pi-map-marker cursor-pointer hover:animate-ping"></i>
+  </div>
+  }
+</div>
+
+<div class="flex flex-col gap-6 mt-6">
+  <div class="flex gap-6 xl:flex-row flex-col">
+    <div class="flex-2 border border-surface rounded-2xl px-5">
+      <app-generic-table [data]="tableData" [config]="tableConfig" title="Vehicles" [showActions]="false" [activeOnes]="activeOnes" />
+    </div>
+
+    <div class="flex-1 flex-col justify-between">
+      <div class="h-full w-full rounded-2xl" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
+    </div>
+  </div>
+</div>

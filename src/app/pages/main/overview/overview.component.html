@@ -1,0 +1,27 @@
+
+    <div class="flex flex-wrap gap-4 items-start justify-between p-1">
+        <div class="flex-1">
+            <div class="text-muted-color font-medium leading-normal">Overview</div>
+            <div class="text-color text-3xl font-semibold leading-normal">Welcome to Maintainance App</div>
+        </div>
+        <div class="flex gap-2 whitespace-nowrap flex-nowrap">
+            
+            <p-button severity="secondary" outlined>
+                <p-overlayBadge severity="danger" styleClass="!min-w-0 !w-2.5 !h-2.5">
+                    <i class="pi pi-bell"></i>
+                </p-overlayBadge>
+            </p-button>
+        </div>
+    </div>
+
+
+    <div class="flex flex-col gap-6 mt-6">
+        <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
+            <app-generic-table [data]="[]" [config]="tableConfig" title="Devices" [showActions]="false" [activeOnes]="'2 Users'" />
+        </div>
+        <!-- <div class="flex gap-6 xl:flex-row flex-col">
+            <div class="flex-1 border border-surface rounded-2xl py-5 px-7">
+
+            </div>
+        </div> -->
+    </div>
