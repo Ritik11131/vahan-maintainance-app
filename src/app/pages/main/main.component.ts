@@ -45,36 +45,7 @@ export class MainComponent {
   constructor(private router: Router) {
 
     this.sampleOptions = [
-      {
-        icon: 'pi pi-home',
-        title: 'Overview',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/overview'
-      },
-      {
-        icon: 'pi pi-comment',
-        title: 'Chat',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/chat'
-      },
-      {
-        icon: 'pi pi-inbox',
-        title: 'Inbox',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/mail'
-      },
-      {
-        icon: 'pi pi-th-large',
-        title: 'Cards',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/cards'
-      },
-      {
-        icon: 'pi pi-user',
-        title: 'Customers',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/customers'
-      },
-      {
-        icon: 'pi pi-video',
-        title: 'Movies',
-        src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/movies'
-      }
+      { icon: 'pi pi-home', title: 'Overview', href: '/main/overview' },
     ];
     this.selectedSampleOption = this.sampleOptions[0];
 
