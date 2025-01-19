@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://api.development.com'
+    apiUrl: 'https://sapi.livetrack24.in/api'
   };
