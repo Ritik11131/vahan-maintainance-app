@@ -23,8 +23,8 @@ import { InputIconModule } from 'primeng/inputicon';
 })
 export class LoginComponent implements OnInit {
 
-  email: string = '';
-  password: string = '';
+  email: string = 'admin';
+  password: string = 'admin';
   emailError: string = '';
   passwordError: string = '';
   captchaError: boolean = false;

@@ -70,6 +70,7 @@
     [styleClass]="config.styleClass"
     [showCurrentPageReport]="config.showCurrentPageReport"
     [size]="'small'"
+    [loading]="loading"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     dataKey="id"
   >
@@ -86,7 +87,7 @@
 
       </div>
 
-      <div class="mt-10 mb-4 flex items-center justify-between">
+      <div class="mt-6 mb-4 flex items-center justify-between">
         <p-iconfield iconPosition="left">
             <p-inputicon class="pi pi-search"> </p-inputicon>
             <input pInputText type="text" (input)="onSearch($event,dt)" placeholder="Search" />
@@ -117,13 +118,11 @@
                     type="text"
                     [field]="col.field"
                     display="menu"/>
-
-              <!-- <p-sortIcon [field]="col.field" /> -->
             }
           </th>
         }
         @if (showActions) {
-          <th style="width: 8rem">Actions</th>
+          <th style="width: 15rem">Actions</th>
         }
       </tr>
     </ng-template>
@@ -148,7 +147,7 @@
               }
               @case ('chip') {
                 <p-tag
-                  [value]="item[col.field] ? 'On' : 'Off'"
+                  [value]="(col.field === 'isConfigMatched') ? (item[col.field] === null ? 'Not Configured' : item[col.field] ? 'Matched' : 'Not Matched') : item[col.field] ? 'On' : 'Off'"
                   [severity]="item[col.field] ? 'success' : 'danger'"
                 />
               }
@@ -174,23 +173,42 @@
         }
         @if (showActions) {
           <td>
-            <p-button
+            @if(config.actions?.showEdit) {
+              <p-button
               icon="pi pi-pencil"
-              class="mr-2"
-              [rounded]="true"
-              [outlined]="true"
+              text
+              [size]="'small'"
               (click)="onEdit.emit(item)"
-            />
-            <p-button
-              icon="pi pi-trash"
-              severity="danger"
-              [rounded]="true"
-              [outlined]="true"
-              (click)="onDelete.emit(item)"
-            />
+              />
+            }
+
+            @for (btn of config.actions?.customButtons; track btn.key) {
+              <p-button
+                text
+                [pTooltip]="btn.tooltip"
+                [size]="'small'"
+                [icon]="btn.icon"
+                [severity]="btn.severity"
+                (onClick)="handleActionClick(btn.key, item)"
+              />
+            }
           </td>
         }
       </tr>
+    </ng-template>
+
+     <ng-template #loadingicon>
+       <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+      </ng-template>
+
+
+      <ng-template #emptymessage>
+        <tr>
+            <td>
+              No Data Found.
+                
+            </td>
+        </tr>
     </ng-template>
 
     @if (showSummary) {

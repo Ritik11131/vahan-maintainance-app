@@ -32,9 +32,21 @@ export interface ColumnConfig {
     }[];
   }
   
+  export interface ActionsConfig {
+    showEdit?: boolean;
+    customButtons?: {
+      id:number;
+      key:string;
+      tooltip: string;
+      icon?: string;
+      severity?: "success" | "info" | "warn" | "danger" | "help" | "primary" | "secondary" | "contrast" | null | undefined;
+    }[];
+  }
+  
   export interface TableConfig {
     columns: ColumnConfig[];
     toolbar?: ToolbarConfig;
+    actions?:ActionsConfig;
     paginator?: boolean;
     minWidth:string;
     rows?: number;

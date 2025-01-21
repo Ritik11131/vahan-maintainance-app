@@ -20,7 +20,15 @@ export class AuthService {
    */
   async login(loginId: string, password: string): Promise<IResponseInterface> {
     const data = { loginDevice:'web',loginId:'appdemo', password:'12345678' };
-    const response = await this.httpService.post<IResponseInterface>(LOGIN_ENDPOINT, data);
+    // const response = await this.httpService.post<IResponseInterface>(LOGIN_ENDPOINT, data);
+    const response = {
+      time: '', // ISO 8601 date string
+      success: true,
+      message: '',
+      requestId: '',
+      data: 'Token aagya',
+      errors: [] // Assuming errors can be of any type, you can define a more specific type if needed
+    }
     this.setTokens(response.data); // Assuming the response contains a token
     return response;
   }

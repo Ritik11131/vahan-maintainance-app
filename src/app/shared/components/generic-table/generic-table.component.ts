@@ -14,11 +14,13 @@ import { Table } from 'primeng/table';
 import { TableConfig } from '@/app/shared/interfaces/table';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @Component({
   selector: 'app-generic-table',
-  imports: [   CommonModule,
+  imports: [   
+    CommonModule,
     FormsModule,
     TableModule,
     ToolbarModule,
@@ -26,6 +28,7 @@ import { InputIconModule } from 'primeng/inputicon';
     InputTextModule,
     FileUploadModule,
     TagModule,
+    TooltipModule,
     RatingModule,
     AvatarModule,
     IconFieldModule,
@@ -36,9 +39,10 @@ import { InputIconModule } from 'primeng/inputicon';
 })
 export class GenericTableComponent {
 
+  @Input() loading:boolean = false;
   @Input() data: any[] = [];
   @Input() config!: TableConfig;
-  @Input() globalFilterFields!: any[]
+  @Input() globalFilterFields!: any[];
   @Input() title: string = '';
   @Input() showActions: boolean = true;
   @Input() showSummary: boolean = true;
@@ -50,6 +54,7 @@ export class GenericTableComponent {
   @Output() onDeleteSelected = new EventEmitter<any[]>();
   @Output() onImport = new EventEmitter<any>();
   @Output() onExport = new EventEmitter<void>();
+  @Output() configActionClicked = new EventEmitter<{ action: string; item: any }>();
 
   @ViewChild('dt') table!: Table;
 
@@ -62,5 +67,11 @@ export class GenericTableComponent {
     if (input) {
       dt.filterGlobal(input.value, 'contains');
     }
+  }
+
+
+  // Method to handle button clicks
+  handleActionClick(action: string, item: any) : void {    
+    this.configActionClicked.emit({ action, item });
   }
 }
