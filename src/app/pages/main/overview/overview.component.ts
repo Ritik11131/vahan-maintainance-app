@@ -12,10 +12,12 @@ import { deviceEditableSettings, deviceSettings } from '@/app/shared/constants';
 import { DeviceData } from '@/app/shared/interfaces/getData';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TooltipModule } from 'primeng/tooltip';
+import { AvatarModule } from 'primeng/avatar';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-overview',
-  imports: [ButtonModule, GenericTableComponent,OverlayBadgeModule,FormsModule,DrawerModule,SelectButtonModule,TooltipModule ],
+  imports: [ButtonModule, GenericTableComponent,OverlayBadgeModule,FormsModule,DrawerModule,SelectButtonModule,TooltipModule,AvatarModule,TagModule ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.css'
 })
@@ -34,6 +36,7 @@ export class OverviewComponent implements OnInit {
     lng: null
   }
   activeOnes:string = '';
+  currentConfigStatus: any = { severity : '', value:''}
 
 
 
@@ -105,18 +108,33 @@ export class OverviewComponent implements OnInit {
   async getDeviceFullConfigByPingId(id: number) {
     try {
       const response: IResponseInterface = await this.deviceMaintenanceService.getPingById(id);
-      this.googleMapBtnObj.lat = response?.data?.latitude
-      this.googleMapBtnObj.lng = response?.data?.longitude
-      console.log(JSON.parse(response.data.attributes), 'ress');
-      // Update the values in deviceSettings based on the response
+      
+      // Destructure the response data
+      const { latitude, longitude, isConfigMatched, attributes } = response?.data || {};
+      
+      // Update Google Map coordinates
+      this.googleMapBtnObj.lat = latitude;
+      this.googleMapBtnObj.lng = longitude;
+  
+      // Update current config status
+      this.currentConfigStatus.severity = isConfigMatched ? 'success' : 'danger';
+      this.currentConfigStatus.value = isConfigMatched === null ? 'Not Configured' : isConfigMatched ? 'Matched' : 'Not Matched';
+  
+      // Parse attributes once
+      const parsedAttributes = JSON.parse(attributes);
+      console.log(parsedAttributes, 'ress');
+  
+      // Update the values in deviceSettings based on the parsed attributes
       this.deviceSettings.forEach(setting => {
-        if (JSON.parse(response.data.attributes).hasOwnProperty(setting.key)) {
-          setting.value = JSON.parse(response.data.attributes)[setting.key];
+        if (parsedAttributes.hasOwnProperty(setting.key)) {
+          setting.value = parsedAttributes[setting.key];
         }
       });
+  
       console.log(this.deviceSettings);
       
     } catch (error) {
+      console.error('Error fetching device configuration:', error);
     }
   }
 

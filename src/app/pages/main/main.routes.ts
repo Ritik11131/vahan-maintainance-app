@@ -13,10 +13,10 @@ export const mainRoutes: Routes = [
                 path: 'overview',
                 component: OverviewComponent
             },
-            {
-                path: 'dashboard',
-                component: DashboardComponent
-            }
+            // {
+            //     path: 'dashboard',
+            //     component: DashboardComponent
+            // }
         ]
     },
 ];

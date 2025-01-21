@@ -56,7 +56,7 @@ export const statusCards: IstatusCards[] = [
 
 // Array of settings
 export const deviceSettings = [
-    { name: 'Primary IP', key: 'ip0', value: 'swsw', placeholder: 'Update Ip0' },
+    { name: 'Primary IP', key: 'ip0', value: '', placeholder: 'Update Ip0' },
     { name: 'Last Ping Primary', key: 'ip0Ping', value: 'ojoo', placeholder: 'Update Last Ping Primary' },
     { name: 'Secondary IP', key: 'ip1', value: '', placeholder: 'Update Ip1' },
     { name: 'Last Ping Secondary', key: 'ip1Ping', value: '', placeholder: 'Update Last Ping Secondary' },
@@ -74,7 +74,7 @@ export const deviceSettings = [
 
 // Array of settings
 export const deviceEditableSettings = [
-    { name: 'Primary IP', key: 'ip0', value: 'swsw', placeholder: 'Update Ip0' },
+    { name: 'Primary IP', key: 'ip0', value: '', placeholder: 'Update Ip0' },
     // { name: 'Last Ping Primary', key: 'ip0Ping', value: 'ojoo', placeholder: 'Update Last Ping Primary' },
     { name: 'Secondary IP', key: 'ip1', value: '', placeholder: 'Update Ip1' },
     // { name: 'Last Ping Secondary', key: 'ip1Ping', value: '', placeholder: 'Update Last Ping Secondary' },
