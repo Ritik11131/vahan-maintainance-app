@@ -6,7 +6,7 @@
             [label]="config.toolbar?.newLabel || 'New'"
             icon="pi pi-plus"
             class="mr-2"
-            (onClick)="onNew.emit()"
+            (onClick)="onNew.emit(true)"
           />
         }
         @if (config.toolbar?.showDelete) {
@@ -177,8 +177,10 @@
               <p-button
               icon="pi pi-pencil"
               text
+              [pTooltip]="'Edit'"
+              tooltipPosition="bottom"
               [size]="'small'"
-              (click)="onEdit.emit(item)"
+              (click)="handleActionClick('edit', item)"
               />
             }
 
@@ -186,7 +188,7 @@
               <p-button
                 text
                 [pTooltip]="btn.tooltip"
-                [size]="'small'"
+                tooltipPosition="bottom"
                 [icon]="btn.icon"
                 [severity]="btn.severity"
                 (onClick)="handleActionClick(btn.key, item)"

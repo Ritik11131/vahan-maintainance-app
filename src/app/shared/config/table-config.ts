@@ -1,22 +1,19 @@
 import { TableConfig } from "../interfaces/table";
 
-export const overviewTableConfig: TableConfig = {
+export const deviceManagementTableConfig: TableConfig = {
   columns: [
     { field: 'serialNo', header: 'Serial No', filter: false },
     { field: 'imei', header: 'Imei', filter: false, },
     { field: 'iccid', header: 'Iccid', filter: false, },
     { field: 'isConfigMatched', header: 'Configuration', filter: false, displayType: 'chip' },
     { field: 'lastUpdated', header: 'Last Updated At', filter: false, displayType:'date' },
-
-
-
   ],
-  // toolbar: {
-  //   showNew: true,
-  //   showDelete: true,
-  //   showImport: true,
-  //   showExport: true
-  // },
+  toolbar: {
+    showNew: true,
+    // showDelete: true,
+    // showImport: true,
+    showExport: true
+  },
   actions: {
     showEdit: false,
     customButtons: [
@@ -28,6 +25,29 @@ export const overviewTableConfig: TableConfig = {
         tooltip:'Update Config'
       }
     ]
+  },
+  paginator: true,
+  globalFilter: true,
+  selectionMode: 'single',
+  minWidth: '75rem',
+  showCurrentPageReport: true,
+  rowHover: true,
+};
+
+
+export const stateManagementTableConfig: TableConfig = {
+  columns: [
+    { field: 'id', header: 'State Id', filter: false },
+    { field: 'name', header: 'Name', filter: false, },
+  ],
+  toolbar: {
+    showNew: true,
+    // showDelete: true,
+    // showImport: true,
+    showExport: true
+  },
+  actions: {
+    showEdit: true,
   },
   paginator: true,
   globalFilter: true,

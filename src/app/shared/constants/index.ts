@@ -2,6 +2,10 @@ import { IstatusCards } from "../interfaces/dashboard";
 
 export const sidebarNavigations = [
     { icon: 'pi pi-home', title: 'Overview', href: '/main/overview' },
+    { icon: 'pi pi-truck', title: 'Device', href: '/main/device' },
+    { icon: 'pi pi-building-columns', title: 'State', href: '/main/state' },
+    { icon: 'pi pi-database', title: 'Backend', href: '/main/backend' },
+
     // { icon: 'pi pi-th-large', title: 'Dashboard', href: '/main/dashboard' },
 ];
 
@@ -89,3 +93,9 @@ export const deviceEditableSettings = [
     // { name: 'Reset Count', key: 'reset', value: '', placeholder: 'Update Reset Count' },
     // { name: 'Reserve Index', key: 'resIndex', value: '', placeholder: 'Update Reserve Index' }
 ];
+
+
+export const stateCreateEditSettings = [
+    { name: 'State name', key: 'name', placeholder: 'Enter State Name' },
+
+]

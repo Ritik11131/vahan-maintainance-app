@@ -48,8 +48,8 @@ export class GenericTableComponent {
   @Input() showSummary: boolean = true;
   @Input() activeOnes = '';
 
-  @Output() onNew = new EventEmitter<void>();
-  @Output() onEdit = new EventEmitter<any>();
+  @Output() onNew = new EventEmitter<boolean>();
+  // @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   @Output() onDeleteSelected = new EventEmitter<any[]>();
   @Output() onImport = new EventEmitter<any>();

@@ -1,8 +1,10 @@
 
 import { Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
+import { DeviceComponent } from './device/device.component';
+import { StateComponent } from './state/state.component';
+import { BackendComponent } from './backend/backend.component';
 
 export const mainRoutes: Routes = [
     {
@@ -13,10 +15,18 @@ export const mainRoutes: Routes = [
                 path: 'overview',
                 component: OverviewComponent
             },
-            // {
-            //     path: 'dashboard',
-            //     component: DashboardComponent
-            // }
+            {
+                path: 'device',
+                component:DeviceComponent
+            },
+            {
+                path:'state',
+                component:StateComponent
+            },
+            {
+                path:'backend',
+                component:BackendComponent
+            }
         ]
     },
 ];

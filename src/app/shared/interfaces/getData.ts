@@ -10,3 +10,9 @@ export interface DeviceData {
     lastUpdated: string | null; // Assuming it can be a date string or null
     pingId: number;
 }
+
+export interface StateData {
+    [key: string]: any;
+    id?: number;
+    name: string;
+}
