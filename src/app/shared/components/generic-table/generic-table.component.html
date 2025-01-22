@@ -81,9 +81,11 @@
               <div class="text-2xl leading-8 text-color font-medium">{{title}}</div>
               <div class="mt-1 leading-6 text-muted-color">The analysis list here shows all {{title}}</div>
           </div>
-          <div>
-            <p-button icon="pi pi-circle-fill text-green-500 animate-pulse" [label]="activeOnes" outlined severity="secondary" />
-          </div>
+          @if(activeOnes) {
+            <div>
+              <p-button icon="pi pi-circle-fill text-green-500 animate-pulse" [label]="activeOnes" outlined severity="secondary" />
+            </div>
+          }
 
       </div>
 
@@ -175,8 +177,9 @@
           <td>
             @if(config.actions?.showEdit) {
               <p-button
-              icon="pi pi-pencil"
+              icon="pi pi-pen-to-square"
               text
+              [severity]="'info'"
               [pTooltip]="'Edit'"
               tooltipPosition="bottom"
               [size]="'small'"

@@ -29,7 +29,7 @@ export const deviceManagementTableConfig: TableConfig = {
   paginator: true,
   globalFilter: true,
   selectionMode: 'single',
-  minWidth: '75rem',
+  minWidth: '50rem',
   showCurrentPageReport: true,
   rowHover: true,
 };
@@ -52,7 +52,7 @@ export const stateManagementTableConfig: TableConfig = {
   paginator: true,
   globalFilter: true,
   selectionMode: 'single',
-  minWidth: '55rem',
+  minWidth: '50rem',
   showCurrentPageReport: true,
   rowHover: true,
 };
