@@ -1,1 +1,83 @@
-<p>backend works!</p>
+<div class="flex flex-wrap gap-4 items-start justify-between p-1">
+    <div class="flex-1">
+        <div class="text-color text-2xl font-medium leading-8">Backend Management</div>
+        <!-- <div class="text-color text-3xl font-semibold leading-normal">Welcome to Maintainance</div> -->
+    </div>
+    <!-- <div class="flex gap-2 whitespace-nowrap flex-nowrap">
+        
+        <p-button severity="secondary" outlined>
+            <p-overlayBadge severity="danger" styleClass="!min-w-0 !w-2.5 !h-2.5">
+                <i class="pi pi-bell"></i>
+            </p-overlayBadge>
+        </p-button>
+    </div> -->
+</div>
+
+<div class="mt-4 flex flex-wrap gap-6 items-center justify-between p-1">
+    <p-select [(ngModel)]="defaultSelectedState" (onChange)="handleChangeState($event)" [filter]="true" [showClear]="true" [options]="stateOptions" optionLabel="name" placeholder="Select a State" class="w-full md:w-56" />
+
+    <div class="flex items-center gap-2">
+       
+    </div>
+</div>
+
+<div class="flex flex-col gap-6 mt-6">
+    <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
+        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" title="Backend"
+            [showActions]="true" (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)" />
+    </div>
+    <!-- <div class="flex gap-6 xl:flex-row flex-col">
+        <div class="flex-1 border border-surface rounded-2xl py-5 px-7">
+
+        </div>
+    </div> -->
+</div>
+
+
+<p-drawer [(visible)]="drawerVisible" [dismissible]="false" [closable]="false" position="right"
+    styleClass="!max-w-3xl !w-full !h-screen rounded-l-2xl">
+    <ng-template #headless>
+        <div class="flex flex-col h-screen overflow-auto">
+            <div class="">
+                <div class="flex align-items-center gap-3 p-6">
+                    <p-button severity="info" text icon="pi pi-cog text-3xl" />
+                    <div class="flex-1">
+                        <div class="leading-6 text-color font-medium">Configuration Status</div>
+                        <!-- <p-tag [severity]="currentConfigStatus.severity" [value]="currentConfigStatus.value" /> -->
+                    </div>
+
+                    <p-button pTooltip="Close" tooltipPosition="bottom" (onClick)="drawerVisible = false"
+                        icon="pi pi-times-circle" text rounded severity="danger" />
+                </div>
+            </div>
+            <div class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
+                <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                    <div class="flex items-start justify-between">
+                        <div class="leading-6 font-medium text-color">Saved Configuration</div>
+                    </div>
+                    <div
+                        class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 p-2">
+                            <!-- @for (data of stateCreateEditSettings; track data.key) {
+                                <div class="flex flex-col p-2 bg-white dark:bg-surface-800 rounded-lg">
+                                    <label class="text-sm leading-5 font-medium text-color">{{ data.name }}</label>
+                                    <input pInputText [(ngModel)]="state[data.key]" type="text" [placeholder]="data.placeholder" class="mt-1 p-1 border border-gray-300 rounded-md w-full dark:bg-surface-700 dark:border-gray-600" />
+                                </div>
+                            } -->
+
+                        </div>
+                        <div class="flex justify-end p-3">
+                            <p-button (onClick)="handleCreateBackend()" styleClass="flex"
+                                (onClick)="drawerVisible = false" icon="pi pi-check-circle" label="Save"
+                                severity="primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+
+
+</p-drawer>

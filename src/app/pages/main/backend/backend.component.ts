@@ -1,11 +1,93 @@
-import { Component } from '@angular/core';
+import { BackendService } from '@/app/core/services/backend.service';
+import { StateService } from '@/app/core/services/state.service';
+import { GenericTableComponent } from '@/app/shared/components/generic-table/generic-table.component';
+import { backendManagementTableConfig } from '@/app/shared/config/table-config';
+import { IResponseInterface } from '@/app/shared/interfaces/auth';
+import { BackendData } from '@/app/shared/interfaces/getData';
+import { createBackend } from '@/app/shared/interfaces/postData';
+import { TableConfig } from '@/app/shared/interfaces/table';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
+import { SelectModule } from 'primeng/select';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-backend',
-  imports: [],
+  imports: [GenericTableComponent, DrawerModule, ButtonModule, FormsModule, TagModule, SelectModule],
   templateUrl: './backend.component.html',
   styleUrl: './backend.component.css'
 })
-export class BackendComponent {
+export class BackendComponent implements OnInit {
+
+  loading: boolean = false;
+  tableConfig: TableConfig = backendManagementTableConfig;
+  tableData: BackendData[] = [];
+  drawerVisible: boolean = false;
+  backend!: BackendData;
+  stateOptions:any[] = [];
+  defaultSelectedState!:any
+
+  constructor(private stateService:StateService, private backendService:BackendService ) {}
+
+  ngOnInit(): void {
+      this.loadBackendService();
+  }
+
+  async loadBackendService() {
+    await this.fetchAllStates();
+    await this.loadTableDataWithStateID(this.defaultSelectedState.id);
+    
+  }
+
+  async loadTableDataWithStateID(id:number) {
+    try {
+      const response: IResponseInterface = await this.backendService.fetchBackendListByStateId(id);
+      this.tableData = response?.data;
+    } catch (error) {
+      
+    }
+  }
+
+
+  async handleChangeState(event:any) {
+    await this.loadTableDataWithStateID(event.value.id);
+  }
+
+
+   async fetchAllStates() {
+      try {
+        const response: IResponseInterface = await this.stateService.fetchStatesList();
+        this.stateOptions = response?.data;
+        this.defaultSelectedState = response?.data[0];
+        console.log(this.defaultSelectedState);
+      } catch (error) {
+        this.stateOptions = []
+      }
+    }
+
+
+
+  handleOnNew(event: boolean) {
+    this.drawerVisible = true;
+    this.backend = {} as createBackend;
+    console.log(this.backend);
+  }
+
+
+  async onConfigActionClicked(event: any) {
+    this.drawerVisible = true;
+    switch (event.action) {
+      case 'edit':
+        this.backend = { ...event?.item }
+        break;
+      // Add more cases as needed
+    }
+  }
+
+  async handleCreateBackend() {
+
+  }
 
 }

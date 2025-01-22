@@ -7,7 +7,10 @@ export const GET_FILTERED_DEVICES_LIST_ENDPOINT = 'maintenance/api/device/config
 export const GET_PING_BY_ID_ENDPOINT = 'maintenance/api/ping';
 
 // State Endpoints
-export const GET_STATES_LIST_ENDPOINT = 'maintenance/api/state'
+export const GET_STATES_LIST_ENDPOINT = 'maintenance/api/state';
+
+//Backend Endpoints
+export const GET_BACKEND_LIST_BY_STATEID_ENDPOINT = 'maintenance/api/backend/ByStateId'
 
 // Vehicle Endpoints
 export const GET_VEHICLE_LIST_ENDPOINT = 'VehicleList';

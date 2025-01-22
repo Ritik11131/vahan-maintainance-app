@@ -1,3 +1,9 @@
 export interface createState {
-    name:string
+    name:string;
+}
+
+
+export interface createBackend {
+    stateId:number;
+    name:string;
 }

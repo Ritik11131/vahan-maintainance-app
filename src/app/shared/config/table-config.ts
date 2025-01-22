@@ -56,3 +56,27 @@ export const stateManagementTableConfig: TableConfig = {
   showCurrentPageReport: true,
   rowHover: true,
 };
+
+
+export const backendManagementTableConfig: TableConfig = {
+  columns: [
+    { field: 'id', header: 'Backend Id', filter: false },
+    { field: 'stateId', header: 'State Id', filter: false, },
+    { field: 'name', header: 'Backend Name', filter: false, },
+  ],
+  toolbar: {
+    showNew: true,
+    // showDelete: true,
+    // showImport: true,
+    showExport: true
+  },
+  actions: {
+    showEdit: true,
+  },
+  paginator: true,
+  globalFilter: true,
+  selectionMode: 'single',
+  minWidth: '50rem',
+  showCurrentPageReport: true,
+  rowHover: true,
+};
