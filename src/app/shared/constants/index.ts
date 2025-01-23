@@ -5,6 +5,7 @@ export const sidebarNavigations = [
     { icon: 'pi pi-truck', title: 'Device', href: '/main/device' },
     { icon: 'pi pi-building-columns', title: 'State', href: '/main/state' },
     { icon: 'pi pi-database', title: 'Backend', href: '/main/backend' },
+    { icon: 'pi pi-key', title: 'Command Key', href: '/main/command-key' },
 
     // { icon: 'pi pi-th-large', title: 'Dashboard', href: '/main/dashboard' },
 ];
@@ -96,6 +97,10 @@ export const deviceEditableSettings = [
 
 
 export const stateCreateEditSettings = [
-    { name: 'State name', key: 'name', placeholder: 'Enter State Name' },
+    { name: 'State Name', key: 'name', placeholder: 'Enter State Name' },
+]
 
+export const backendCreateEditSettings = [
+    { name: 'Select State', key: 'stateId',inputType:'dropdown', placeholder: 'Select State' },
+    { name: 'Backend Name', key: 'name', placeholder: 'Backend Name' }
 ]

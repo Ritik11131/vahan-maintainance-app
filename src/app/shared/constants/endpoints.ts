@@ -11,6 +11,7 @@ export const GET_STATES_LIST_ENDPOINT = 'maintenance/api/state';
 
 //Backend Endpoints
 export const GET_BACKEND_LIST_BY_STATEID_ENDPOINT = 'maintenance/api/backend/ByStateId'
+export const CREATE_UPDATE_BACKEND_ENDPOINT = 'maintenance/api/backend'
 
 // Vehicle Endpoints
 export const GET_VEHICLE_LIST_ENDPOINT = 'VehicleList';

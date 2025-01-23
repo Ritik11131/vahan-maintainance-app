@@ -14,10 +14,11 @@
 </div>
 
 <div class="mt-4 flex flex-wrap gap-6 items-center justify-between p-1">
-    <p-select [(ngModel)]="defaultSelectedState" (onChange)="handleChangeState($event)" [filter]="true" [showClear]="true" [options]="stateOptions" optionLabel="name" placeholder="Select a State" class="w-full md:w-56" />
+    <p-select [(ngModel)]="defaultSelectedState" (onChange)="handleChangeState($event)" [filter]="true"
+        [options]="stateOptions" optionLabel="name" placeholder="Select a State" class="w-full md:w-56" />
 
     <div class="flex items-center gap-2">
-       
+
     </div>
 </div>
 
@@ -58,12 +59,23 @@
                     <div
                         class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden">
                         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 p-2">
-                            <!-- @for (data of stateCreateEditSettings; track data.key) {
-                                <div class="flex flex-col p-2 bg-white dark:bg-surface-800 rounded-lg">
-                                    <label class="text-sm leading-5 font-medium text-color">{{ data.name }}</label>
-                                    <input pInputText [(ngModel)]="state[data.key]" type="text" [placeholder]="data.placeholder" class="mt-1 p-1 border border-gray-300 rounded-md w-full dark:bg-surface-700 dark:border-gray-600" />
-                                </div>
-                            } -->
+                            @for (data of backendCreateEditSettings; track data.key) {
+                            <div class="flex flex-col p-2 bg-white dark:bg-surface-800 rounded-lg">
+                                <label class="text-sm leading-5 font-medium text-color">{{ data.name }}</label>
+                                @switch (data.inputType) {
+                                @case ('dropdown') {
+                                <p-select appendTo="body" [(ngModel)]="drawerSelectedDrpDwnValue"
+                                    [filter]="true" [options]="data.key === 'stateId' ? stateOptions : []" optionLabel="name"
+                                    placeholder="Select a State" class="mt-1 w-full" />
+                                }
+                                @default {
+                                    <input pInputText [(ngModel)]="backend[data.key]" type="text"
+                                        [placeholder]="data.placeholder"
+                                        class="mt-1 w-full" />
+                                }
+                                }
+                            </div>
+                            }
 
                         </div>
                         <div class="flex justify-end p-3">

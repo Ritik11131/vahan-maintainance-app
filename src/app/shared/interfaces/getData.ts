@@ -18,6 +18,7 @@ export interface StateData {
 }
 
 export interface BackendData {
+    [key: string]: any;
     id?:number;
     stateId:number;
     name:string

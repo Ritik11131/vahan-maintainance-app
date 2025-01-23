@@ -5,6 +5,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { DeviceComponent } from './device/device.component';
 import { StateComponent } from './state/state.component';
 import { BackendComponent } from './backend/backend.component';
+import { CommandKeyComponent } from './command-key/command-key.component';
 
 export const mainRoutes: Routes = [
     {
@@ -26,6 +27,10 @@ export const mainRoutes: Routes = [
             {
                 path:'backend',
                 component:BackendComponent
+            },
+            {
+                path:'command-key',
+                component:CommandKeyComponent
             }
         ]
     },
