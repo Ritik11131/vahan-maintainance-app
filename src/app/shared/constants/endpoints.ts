@@ -13,6 +13,9 @@ export const GET_STATES_LIST_ENDPOINT = 'maintenance/api/state';
 export const GET_BACKEND_LIST_BY_STATEID_ENDPOINT = 'maintenance/api/backend/ByStateId'
 export const CREATE_UPDATE_BACKEND_ENDPOINT = 'maintenance/api/backend'
 
+//Command Key Endpoints
+export const GET_COMMAND_KEY_LIST_ENDPOINT = 'maintenance/api/commandkey';
+
 // Vehicle Endpoints
 export const GET_VEHICLE_LIST_ENDPOINT = 'VehicleList';
 

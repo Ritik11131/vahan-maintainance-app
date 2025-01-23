@@ -80,3 +80,25 @@ export const backendManagementTableConfig: TableConfig = {
   showCurrentPageReport: true,
   rowHover: true,
 };
+
+export const commandKeyManagementTableConfig: TableConfig = {
+  columns: [
+    { field: 'id', header: 'Command Key Id', filter: false },
+    { field: 'name', header: 'Command Key Name', filter: false, },
+  ],
+  toolbar: {
+    showNew: true,
+    // showDelete: true,
+    // showImport: true,
+    showExport: true
+  },
+  actions: {
+    showEdit: true,
+  },
+  paginator: true,
+  globalFilter: true,
+  selectionMode: 'single',
+  minWidth: '50rem',
+  showCurrentPageReport: true,
+  rowHover: true,
+};

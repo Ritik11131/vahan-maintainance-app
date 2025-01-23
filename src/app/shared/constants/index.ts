@@ -104,3 +104,7 @@ export const backendCreateEditSettings = [
     { name: 'Select State', key: 'stateId',inputType:'dropdown', placeholder: 'Select State' },
     { name: 'Backend Name', key: 'name', placeholder: 'Backend Name' }
 ]
+
+export const commandKeyCreateEditSettings = [
+    { name: 'Command Key Name', key: 'name', placeholder: 'Command Key Name' }
+]

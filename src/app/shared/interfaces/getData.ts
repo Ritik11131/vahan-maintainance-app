@@ -23,3 +23,9 @@ export interface BackendData {
     stateId:number;
     name:string
 }
+
+export interface CommandKeyData {
+    [key: string]: any;
+    id?: number;
+    name: string;
+}

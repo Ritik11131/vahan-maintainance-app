@@ -11,11 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { TagModule } from 'primeng/tag';
 import { stateCreateEditSettings } from '@/app/shared/constants';
 import { createState } from '@/app/shared/interfaces/postData';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @Component({
   selector: 'app-state',
-  imports: [GenericTableComponent, DrawerModule, ButtonModule, FormsModule, TagModule],
+  imports: [GenericTableComponent, DrawerModule, ButtonModule, FormsModule, TagModule, InputTextModule],
   templateUrl: './state.component.html',
   styleUrl: './state.component.css'
 })
