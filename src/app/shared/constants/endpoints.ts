@@ -12,9 +12,11 @@ export const GET_STATES_LIST_ENDPOINT = 'maintenance/api/state';
 //Backend Endpoints
 export const GET_BACKEND_LIST_BY_STATEID_ENDPOINT = 'maintenance/api/backend/ByStateId'
 export const CREATE_UPDATE_BACKEND_ENDPOINT = 'maintenance/api/backend'
+export const GET_BACKEND_COMMAND_LIST_ENDPOINT = 'maintenance/api/backend/GetBackendCommands'
 
 //Command Key Endpoints
 export const GET_COMMAND_KEY_LIST_ENDPOINT = 'maintenance/api/commandkey';
+export const UPDATE_COMMAND_TEXT_ENDPOINT = 'maintenance/api/backend/UpdateBackendCommands';
 
 // Vehicle Endpoints
 export const GET_VEHICLE_LIST_ENDPOINT = 'VehicleList';

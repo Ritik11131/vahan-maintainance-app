@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { createBackend, createCommandKey } from '@/app/shared/interfaces/postData';
 import { CommandKeyData } from '@/app/shared/interfaces/getData';
-import { GET_COMMAND_KEY_LIST_ENDPOINT } from '@/app/shared/constants/endpoints';
+import { GET_COMMAND_KEY_LIST_ENDPOINT, UPDATE_COMMAND_TEXT_ENDPOINT } from '@/app/shared/constants/endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,11 @@ export class CommandKeyService {
         const response = await this.httpService.put<IResponseInterface>(GET_COMMAND_KEY_LIST_ENDPOINT, data?.id, data);
         return response;
       }
+
+      async updateCommandText(data: any): Promise<IResponseInterface> {
+        const response = await this.httpService.put<IResponseInterface>(UPDATE_COMMAND_TEXT_ENDPOINT, data?.id, data);
+        return response;
+      }
+
+
 }

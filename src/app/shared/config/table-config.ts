@@ -78,7 +78,18 @@ export const backendManagementTableConfig: TableConfig = {
   selectionMode: 'single',
   minWidth: '50rem',
   showCurrentPageReport: true,
-  rowHover: true,
+  rowHover: false,
+  expandable:true,
+  expandableColumns:[
+    { field: 'id', header: 'Command Id', filter: false },
+    { field: 'commandKey', header: 'Command Key', filter: false, },
+    { field: 'commandText', header: 'Command Text', filter: false, },
+  ],
+  showExpandableActions:true,
+  expandableRowHover:true,
+  expandableActions:{
+    showEdit:true
+  }
 };
 
 export const commandKeyManagementTableConfig: TableConfig = {

@@ -32,8 +32,8 @@
                 <div class="flex align-items-center gap-3 p-6">
                     <p-button severity="info" text icon="pi pi-cog text-3xl"/>
                     <div class="flex-1">
-                        <div class="leading-6 text-color font-medium">Configuration Status</div>
-                        <!-- <p-tag [severity]="currentConfigStatus.severity" [value]="currentConfigStatus.value" /> -->
+                        <div class="leading-6 text-color font-medium">Configuration</div>
+                        <p-tag [severity]="'info'" [value]="'State'" />
                     </div>
                     
                     <p-button pTooltip="Close" tooltipPosition="bottom" (onClick)="drawerVisible = false" icon="pi pi-times-circle" text rounded severity="danger" />
@@ -42,7 +42,7 @@
             <div class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
                 <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
                     <div class="flex items-start justify-between">
-                        <div class="leading-6 font-medium text-color">Saved Configuration</div>
+                        <div class="leading-6 font-medium text-color">State Config</div>
                     </div>
                     <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden">
                         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 p-2">

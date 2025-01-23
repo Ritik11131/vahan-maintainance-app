@@ -47,6 +47,7 @@ export class GenericTableComponent {
   @Input() showActions: boolean = true;
   @Input() showSummary: boolean = true;
   @Input() activeOnes = '';
+  @Input() expandedRows: any = {}; // Expanded rows
 
   @Output() onNew = new EventEmitter<boolean>();
   // @Output() onEdit = new EventEmitter<any>();
@@ -55,6 +56,9 @@ export class GenericTableComponent {
   @Output() onImport = new EventEmitter<any>();
   @Output() onExport = new EventEmitter<void>();
   @Output() configActionClicked = new EventEmitter<{ action: string; item: any }>();
+  @Output() nestedConfigActionClicked = new EventEmitter<{ action: string; item: any }>();
+  @Output() rowExpand = new EventEmitter<any>(); // Event emitter for row expand
+  @Output() rowCollapse = new EventEmitter<any>(); // Event emitter for row collapse
 
   @ViewChild('dt') table!: Table;
 
@@ -69,9 +73,25 @@ export class GenericTableComponent {
     }
   }
 
+   // Handle row expand event
+   onRowExpand(event: any) {
+    this.rowExpand.emit(event);
+  }
+
+  // Handle row collapse event
+  onRowCollapse(event: any) {
+    this.rowCollapse.emit(event);
+  }
+
 
   // Method to handle button clicks
   handleActionClick(action: string, item: any) : void {    
     this.configActionClicked.emit({ action, item });
   }
+
+  handleNestedActionClick(action: string, item: any) : void {    
+    this.nestedConfigActionClicked.emit({ action, item });
+  }
+
+
 }

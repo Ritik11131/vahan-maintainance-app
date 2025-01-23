@@ -73,6 +73,9 @@
     [loading]="loading"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     dataKey="id"
+    [expandedRowKeys]="expandedRows" 
+    (onRowExpand)="onRowExpand($event)" 
+    (onRowCollapse)="onRowCollapse($event)"
   >
     @if (config.globalFilter) {
       <ng-template #caption>
@@ -109,6 +112,9 @@
             <p-tableHeaderCheckbox />
           </th>
         }
+        @if(config.expandable) {
+          <th style="width: 5rem"></th>
+        }
         @for (col of config.columns; track col.field) {
           <th
             [pSortableColumn]="col.filter ? col.field : undefined"
@@ -129,12 +135,18 @@
       </tr>
     </ng-template>
 
-    <ng-template #body let-item>
+    <ng-template #body let-item let-expanded="expanded">
       <tr>
         @if (config.selectionMode === 'multiple') {
           <td>
             <p-tableCheckbox [value]="item" />
           </td>
+        }
+
+        @if(config.expandable) {
+          <td>
+            <p-button type="button" pRipple [pRowToggler]="item" [text]="true" [rounded]="true" [plain]="true" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+        </td>
         }
         @for (col of config.columns; track col.field) {
           <td>
@@ -201,6 +213,69 @@
         }
       </tr>
     </ng-template>
+
+
+    <ng-template #expandedrow let-item>
+      <tr>
+          <td colspan="7">
+              <div class="p-4">
+                  <div class="mb-4 text-md leading-8 text-muted-color font-semibold">Command List for {{ item.name }}</div>
+                  <p-table [value]="item.nested" [rows]="10" [paginator]="true"
+                  [tableStyle]="{ 'min-width': config.minWidth || '100rem' }"
+                  showGridlines="true"
+                  [rowHover]="config.expandableRowHover"
+                  [scrollable]="config.scrollable"
+                  [scrollHeight]="config.scrollHeight"
+                  [styleClass]="config.styleClass"
+                  [showCurrentPageReport]="config.showCurrentPageReport"
+                  [size]="'small'"
+                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                  dataKey="id">
+                      <ng-template #header>
+                          <tr>
+                            @for (col of config.expandableColumns; track col.field) {
+                              <th
+                              >
+                                {{ col.header }}
+                              </th>
+                            }
+                            @if(config.showExpandableActions){
+                              <th style="width: 15rem">Actions</th>
+                            }
+                          </tr>
+                      </ng-template>
+                      <ng-template #body let-item>
+                          <tr>
+                            @for (col of config.expandableColumns; track col.field) {
+                              <td>{{item[col.field] || '-'}}</td>
+                            }
+                            @if (config.showExpandableActions) {
+                              <td>
+                                @if(config.expandableActions?.showEdit) {
+                                  <p-button
+                                  icon="pi pi-pen-to-square"
+                                  text
+                                  [severity]="'info'"
+                                  [pTooltip]="'Edit'"
+                                  tooltipPosition="bottom"
+                                  [size]="'small'"
+                                  (click)="handleNestedActionClick('nested_edit', item)"
+                                  />
+                                }
+                              </td>
+                            }
+                          </tr>
+                      </ng-template>
+                      <ng-template #emptymessage>
+                          <tr>
+                              <td colspan="6">No Data Found.</td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </td>
+      </tr>
+  </ng-template>
 
      <ng-template #loadingicon>
        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>

@@ -47,6 +47,8 @@ export interface ColumnConfig {
     columns: ColumnConfig[];
     toolbar?: ToolbarConfig;
     actions?:ActionsConfig;
+    expandableActions?:ActionsConfig;
+    showExpandableActions?:boolean;
     paginator?: boolean;
     minWidth:string;
     rows?: number;
@@ -56,7 +58,10 @@ export interface ColumnConfig {
     responsive?: boolean;
     styleClass?: string;
     rowHover?: boolean;
+    expandableRowHover?: boolean;
     loading?: boolean;
     scrollable?: boolean;
     scrollHeight?: string;
+    expandable?: boolean;
+    expandableColumns?: ColumnConfig[];
   }

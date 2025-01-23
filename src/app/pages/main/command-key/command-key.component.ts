@@ -11,11 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
 import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-command-key',
-  imports: [GenericTableComponent, DrawerModule, ButtonModule, FormsModule, TagModule,InputTextModule],
+  imports: [GenericTableComponent, DrawerModule, ButtonModule, FormsModule, TagModule,InputTextModule,SelectButtonModule],
   templateUrl: './command-key.component.html',
   styleUrl: './command-key.component.css'
 })

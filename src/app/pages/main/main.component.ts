@@ -27,21 +27,19 @@ import { deviceSettings, moreSidebarNavigations, sidebarNavigations } from '@/ap
 export class MainComponent {
 
 
-  sampleOptions: any[];
   selectedSampleOption: any;
   sampleAppsSidebarNavs: any = sidebarNavigations;
   sampleAppsSidebarNavsMore: any = moreSidebarNavigations;
-  selectedSampleAppsSidebarNav: any = 'Overview';
+  selectedSampleAppsSidebarNav: any = 'Device';
   isSlimMenu: boolean = true;
 
   constructor(private router: Router) {
-    this.sampleOptions = [
-      { icon: 'pi pi-home', title: 'Overview', href: '/main/overview' },
-    ];
-    this.selectedSampleOption = this.sampleOptions[0];
+    const lastSelectedNav = localStorage.getItem('lastSelectedNav')?.split(',');
+    this.setSelectedSampleAppsSidebarNav(lastSelectedNav?.[0] || 'Device', lastSelectedNav?.[1] || '/main/device');
   }
 
   setSelectedSampleAppsSidebarNav(title: any, href: string) {
+    localStorage.setItem('lastSelectedNav', [title, href].join(','));
     this.selectedSampleAppsSidebarNav = title;
     this.router.navigate([href])
   }

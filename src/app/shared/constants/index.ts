@@ -108,3 +108,7 @@ export const backendCreateEditSettings = [
 export const commandKeyCreateEditSettings = [
     { name: 'Command Key Name', key: 'name', placeholder: 'Command Key Name' }
 ]
+
+export const updateCommandtestSettings = [
+    { name: 'Update Key Name', key: 'commandText', placeholder: 'Command Key Name' }
+]
