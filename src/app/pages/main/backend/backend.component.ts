@@ -73,6 +73,7 @@ export class BackendComponent implements OnInit {
 
 
   async handleChangeState(event:any) {
+    this.drawerSelectedDrpDwnValue = event?.value;
     await this.loadTableDataWithStateID(event.value.id);
   }
 
