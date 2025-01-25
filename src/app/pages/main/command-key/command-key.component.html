@@ -15,7 +15,7 @@
 
 <div class="flex flex-col gap-6 mt-6">
     <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
-        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" title="Command Keys" [showActions]="true" (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)"/>
+        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" [title]="'Command Keys'" [showActions]="true" (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)"/>
     </div>
     <!-- <div class="flex gap-6 xl:flex-row flex-col">
         <div class="flex-1 border border-surface rounded-2xl py-5 px-7">

@@ -11,16 +11,15 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DividerModule } from 'primeng/divider';
 import { AvatarModule } from 'primeng/avatar';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
-import { SelectButton } from 'primeng/selectbutton';
 import { TooltipModule } from 'primeng/tooltip';
 import { FormsModule } from '@angular/forms';
 import { DrawerModule } from 'primeng/drawer';
-import { deviceSettings, moreSidebarNavigations, sidebarNavigations } from '@/app/shared/constants';
+import { moreSidebarNavigations, sidebarNavigations } from '@/app/shared/constants';
 
 @Component({
   selector: 'app-main',
   imports: [CommonModule, ButtonModule, InputTextModule, CardModule, ToastModule, DividerModule, SelectModule, MultiSelectModule,
-    AvatarModule, RouterModule, FormsModule, SelectButton, TooltipModule, OverlayBadgeModule, DrawerModule],
+    AvatarModule, RouterModule, FormsModule, TooltipModule, OverlayBadgeModule, DrawerModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

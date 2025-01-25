@@ -112,3 +112,10 @@ export const commandKeyCreateEditSettings = [
 export const updateCommandtestSettings = [
     { name: 'Update Key Name', key: 'commandText', placeholder: 'Command Key Name' }
 ]
+
+export const deviceCreateEditSettings = [
+    { name: 'Name', key: 'name', placeholder: 'Device Name' },
+    { name: 'IMEI', key: 'imei', placeholder: 'Device IMEI' },
+    { name: 'ICCID', key: 'iccid', placeholder: 'Device ICCID' },
+    { name: 'Serial No', key: 'serialNo', placeholder: 'Device Serial No.' }
+]

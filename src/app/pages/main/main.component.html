@@ -1,21 +1,7 @@
 <section class="landing-hero px-8 lg:px-20">
     <div class="flex flex-col items-center">
-        <div class="w-full flex lg:hidden items-center justify-center mt-16 mb-4">
-            <p-selectbutton [(ngModel)]="selectedSampleAppsSidebarNav" [options]="sampleAppsSidebarNavs" optionLabel="title"
-                styleClass="dark:border dark:border-white/20">
-                <ng-template let-item pTemplate="item">
-                    <i [class]="item.icon"></i>
-                    <div [routerLink]="item.href" class="hidden sm:flex flex-1 text-sm font-medium leading-5">{{ item.title }}</div>
-                </ng-template>
-            </p-selectbutton>
-        </div>
-        <div
-            class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full rounded-3xl p-0 flex lg:hidden items-start gap-6 overflow-auto">
-            <!-- <router-outlet/> -->
-             Upcoming...
-        </div>
-        <div
-            class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] rounded-3xl p-6 hidden lg:flex lg:mt-20 items-start gap-6 overflow-hidden">
+        <div  class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] 
+                    rounded-3xl p-6 lg:flex lg:mt-20 items-start gap-6 overflow-hidden">
             <div [ngClass]="{
                     'w-auto': isSlimMenu,
                     'w-72': !isSlimMenu
@@ -32,7 +18,7 @@
                                 hidden: isSlimMenu,
                                 block: !isSlimMenu
                             }" class="text-surface-950 dark:text-surface-0 font-medium text-3xl">
-                            Prime
+                            VAHAN
                         </div>
                     </div>
                     <div class="mt-10 flex flex-col gap-2">

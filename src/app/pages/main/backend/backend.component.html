@@ -24,7 +24,7 @@
 
 <div class="flex flex-col gap-6 mt-6">
     <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
-        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" title="Backend"
+        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" [title]="'Backend'"
             [showActions]="true" (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)" (nestedConfigActionClicked)="onConfigActionClicked($event)" />
     </div>
     <!-- <div class="flex gap-6 xl:flex-row flex-col">
@@ -35,8 +35,7 @@
 </div>
 
 
-<p-drawer [(visible)]="drawerVisible" [dismissible]="false" [closable]="false" position="right"
-    styleClass="!max-w-3xl !w-full !h-screen rounded-l-2xl">
+<p-drawer [(visible)]="drawerVisible" [dismissible]="false" [closable]="false" position="right" styleClass="!max-w-3xl !w-full !h-screen rounded-l-2xl">
     <ng-template #headless>
         <div class="flex flex-col h-screen overflow-auto">
             <div class="">

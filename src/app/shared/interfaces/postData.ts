@@ -11,3 +11,11 @@ export interface createBackend {
 export interface createCommandKey {
     name:string;
 }
+
+export interface createDevice {
+    [key: string]: any;
+    serialNo:string;
+    imei:string;
+    iccid:string;
+    name:string;
+}

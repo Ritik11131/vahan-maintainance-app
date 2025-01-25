@@ -8,25 +8,29 @@ import { IResponseInterface } from '@/app/shared/interfaces/auth';
 import { DeviceMaintenanceService } from '@/app/core/services/device-maintenance.service';
 import { FormsModule } from '@angular/forms';
 import { DrawerModule } from 'primeng/drawer';
-import { deviceEditableSettings, deviceSettings } from '@/app/shared/constants';
+import { deviceCreateEditSettings, deviceEditableSettings, deviceSettings } from '@/app/shared/constants';
 import { DeviceData } from '@/app/shared/interfaces/getData';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TooltipModule } from 'primeng/tooltip';
 import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
+import { createDevice } from '@/app/shared/interfaces/postData';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-device',
-  imports: [ButtonModule, GenericTableComponent,OverlayBadgeModule,FormsModule,DrawerModule,SelectButtonModule,TooltipModule,AvatarModule,TagModule ],
+  imports: [ButtonModule, GenericTableComponent,OverlayBadgeModule,FormsModule,DrawerModule,SelectButtonModule,TooltipModule,AvatarModule,TagModule,InputTextModule ],
   templateUrl: './device.component.html',
   styleUrl: './device.component.css'
 })
 export class DeviceComponent {
   loading:boolean = false;
+  device!: createDevice;
   tableConfig: TableConfig = deviceManagementTableConfig;
   drawerVisible: boolean = false;
   deviceSettings: any[] = deviceSettings;
   deviceEditableSettings :any[] = deviceEditableSettings;
+  deviceCreateEditSettings: any[] = deviceCreateEditSettings;
   tableData: DeviceData[] = [];
   selectedFilterConfig:string = 'All';
   configurationOptions: string[] = ['All','Matched', 'Not Matched', 'Not Configured'];
@@ -35,12 +39,12 @@ export class DeviceComponent {
     lng: null
   }
   activeOnes:string = '';
-  currentConfigStatus: any = { severity : '', value:''}
+  currentConfigStatus: any = { severity : '', value:''};
+  currentState:string = '';
 
 
 
-
-  constructor(private deviceMaintenanceService:DeviceMaintenanceService) {}
+  constructor(private deviceMaintenanceService: DeviceMaintenanceService) {}
 
 
   ngOnInit(): void {
@@ -142,6 +146,7 @@ export class DeviceComponent {
 
   async onConfigActionClicked(event:any) {
     this.drawerVisible = true;
+    this.currentState = event.action;
     switch (event.action) {
       case 'show_config':
         console.log(event.item);
@@ -151,5 +156,24 @@ export class DeviceComponent {
       // Add more cases as needed
     }
   }
+
+   handleOnNew(event: boolean) {
+      this.currentState = 'add_device';
+      this.drawerVisible = true;
+      this.device = {} as createDevice;
+      console.log(this.device);
+    }
+
+
+    async handleCreateDevice() {
+      try {
+        const response: IResponseInterface = await this.deviceMaintenanceService.createDevice({...this.device});  
+        console.log(response);
+        this.drawerVisible = false;
+        await this.loadMaintenanceService();
+      } catch (error) {
+        
+      }
+    }
 
 }

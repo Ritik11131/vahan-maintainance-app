@@ -35,7 +35,7 @@ export class BackendComponent implements OnInit {
   drawerSelectedDrpDwnValue!:any;
   backendCreateEditSettings:any[] = backendCreateEditSettings;
   updateCommandtestSettings:any[] = updateCommandtestSettings;
-  currentState:string = ''
+  currentState:string = '';
 
   constructor(private stateService:StateService, private backendService:BackendService, private commandService:CommandKeyService ) {}
 
