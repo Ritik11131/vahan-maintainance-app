@@ -142,6 +142,22 @@ export class DeviceComponent {
   }
 
 
+  async operateDeviceConfidurationByID(id: number) {
+    try {
+      const response: IResponseInterface = await this.deviceMaintenanceService.getDeviceConfigurationById(id);
+      
+      const parsedAttributes = JSON.parse(response?.data?.attributes);      
+      deviceEditableSettings.forEach(setting => {
+        if (parsedAttributes.hasOwnProperty(setting.key)) {
+          setting.value = parsedAttributes[setting.key];
+        }
+      });
+    } catch (error) {
+
+    }
+  }
+
+
 
 
   async onConfigActionClicked(event:any) {
@@ -151,6 +167,7 @@ export class DeviceComponent {
       case 'show_config':
         console.log(event.item);
         await this.getDeviceFullConfigByPingId(event.item.pingId);
+        await this.operateDeviceConfidurationByID(event.item.id);
         // Logic for showing config
         break;
       // Add more cases as needed
