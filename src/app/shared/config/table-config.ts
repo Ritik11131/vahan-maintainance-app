@@ -37,7 +37,7 @@ export const deviceManagementTableConfig: TableConfig = {
 
 export const stateManagementTableConfig: TableConfig = {
   columns: [
-    { field: 'id', header: 'State Id', filter: false },
+    // { field: 'id', header: 'State Id', filter: false },
     { field: 'name', header: 'Name', filter: false, },
   ],
   toolbar: {
@@ -60,8 +60,8 @@ export const stateManagementTableConfig: TableConfig = {
 
 export const backendManagementTableConfig: TableConfig = {
   columns: [
-    { field: 'id', header: 'Backend Id', filter: false },
-    { field: 'stateId', header: 'State Id', filter: false, },
+    // { field: 'id', header: 'Backend Id', filter: false },
+    // { field: 'stateId', header: 'State Id', filter: false, },
     { field: 'name', header: 'Backend Name', filter: false, },
   ],
   toolbar: {
@@ -81,7 +81,7 @@ export const backendManagementTableConfig: TableConfig = {
   rowHover: false,
   expandable:true,
   expandableColumns:[
-    { field: 'id', header: 'Command Id', filter: false },
+    // { field: 'id', header: 'Command Id', filter: false },
     { field: 'commandKey', header: 'Command Key', filter: false, },
     { field: 'commandText', header: 'Command Text', filter: false, },
   ],
@@ -94,7 +94,7 @@ export const backendManagementTableConfig: TableConfig = {
 
 export const commandKeyManagementTableConfig: TableConfig = {
   columns: [
-    { field: 'id', header: 'Command Key Id', filter: false },
+    // { field: 'id', header: 'Command Key Id', filter: false },
     { field: 'name', header: 'Command Key Name', filter: false, },
   ],
   toolbar: {
