@@ -95,7 +95,8 @@ export class DeviceComponent {
   }
 
   openGoogleMap() {
-    const url = `https://www.google.com/maps/@${this.googleMapBtnObj.lat},${this.googleMapBtnObj.lng},17z`; // 15z is the zoom level
+    const { lat, lng } = this.googleMapBtnObj;
+    const url = `https://www.google.com/maps?q=${lat},${lng}&ll=${lat},${lng}&z=17`; // Places a marker at (lat, lng)
     window.open(url, '_blank');
   }
 
