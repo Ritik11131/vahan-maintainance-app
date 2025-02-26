@@ -19,14 +19,31 @@
             [disabled]="!selectedItems.length"
           />
         }
-        @for (btn of config.toolbar?.customButtons; track btn.label) {
-          <p-button
+        @for (btn of config.toolbar?.customButtons; track btn.key) {
+          @if(btn.key === 'upload_sample_file') {
+            <p-fileUpload
+            mode="basic"
+            accept=".xlsx"
+            [maxFileSize]="1000000"
+            [chooseIcon]="btn.icon"
+            [chooseLabel]="btn.label || 'Import'"
+            class="mr-2 inline-block"
+            [auto]="true"
+            [chooseButtonProps]="{ severity: 'contrast' }"
+            (onSelect)="handleCustomToolbarActionClick(btn.key, $event)"
+          />
+          } @else {
+            <p-button
+            class="mr-2"
             [label]="btn.label"
+            [pTooltip]="btn.tooltip"
+            tooltipPosition="bottom"
             [icon]="btn.icon"
             [severity]="btn.severity"
-            class="ml-2"
-            (onClick)="btn.onClick()"
-          />
+            [disabled]="btn.isSelectionDependent ? !selectedItems.length : false"
+            (onClick)="handleCustomToolbarActionClick(btn.key)"
+            />
+          }
         }
       </ng-template>
 
@@ -63,6 +80,7 @@
     [globalFilterFields]="globalFilterFields"
     [tableStyle]="{ 'min-width': config.minWidth || '100rem' }"
     [(selection)]="selectedItems"
+    (selectionChange)="onSelectionChange($event)"
     [rowHover]="config.rowHover"
     [loading]="config.loading"
     [scrollable]="config.scrollable"

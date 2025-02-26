@@ -114,4 +114,9 @@ export const deviceCreateEditSettings = [
     { name: 'IMEI', key: 'imei', placeholder: 'Device IMEI' },
     { name: 'ICCID', key: 'iccid', placeholder: 'Device ICCID' },
     { name: 'Serial No', key: 'serialNo', placeholder: 'Device Serial No.' }
-]
+];
+
+export const deviceBackendMappingSettings = [
+    { name: 'Select State', key: 'stateId',inputType:'dropdown', placeholder: 'Select State' },
+    { name: 'Select Backend', key: 'backendId',inputType:'dropdown', placeholder: 'Select Backend' }
+];

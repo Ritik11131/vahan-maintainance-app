@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { IResponseInterface } from '@/app/shared/interfaces/auth';
-import { GET_CREATE_DEVICE_ENDPOINT, GET_DEVICE_CONFIGURATION_BY_ID_ENDPOINT, GET_DEVICES_LIST_ENDPOINT, GET_FILTERED_DEVICES_LIST_ENDPOINT, GET_PING_BY_ID_ENDPOINT } from '@/app/shared/constants/endpoints';
-import { createDevice } from '@/app/shared/interfaces/postData';
+import { GET_CREATE_DEVICE_ENDPOINT, GET_DEVICE_CONFIGURATION_BY_ID_ENDPOINT, GET_DEVICES_LIST_ENDPOINT, GET_FILTERED_DEVICES_LIST_ENDPOINT, GET_MAP_DEVICE_BACKEND_ENDPOINT, GET_PING_BY_ID_ENDPOINT } from '@/app/shared/constants/endpoints';
+import { createDevice, mapDeviceWithBackend } from '@/app/shared/interfaces/postData';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +37,10 @@ export class DeviceMaintenanceService {
     const response = await this.httpService.get<IResponseInterface>(GET_DEVICE_CONFIGURATION_BY_ID_ENDPOINT, {}, id);
     return response;
   } 
+
+  async mapDeviceWithBackend(data: mapDeviceWithBackend): Promise<IResponseInterface> {
+    const response = await this.httpService.post<IResponseInterface>(GET_MAP_DEVICE_BACKEND_ENDPOINT, data);
+    return response;
+  }
 
 }

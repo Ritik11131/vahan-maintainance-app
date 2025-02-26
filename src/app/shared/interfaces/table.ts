@@ -25,10 +25,13 @@ export interface ColumnConfig {
     importLabel?: string;
     exportLabel?: string;
     customButtons?: {
-      label: string;
+      id:number;
+      key:string;
+      label?:string;
+      tooltip: string;
       icon?: string;
+      isSelectionDependent?: boolean;
       severity?: "success" | "info" | "warn" | "danger" | "help" | "primary" | "secondary" | "contrast" | null | undefined;
-      onClick: () => void;
     }[];
   }
   

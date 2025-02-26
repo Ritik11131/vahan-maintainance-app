@@ -19,3 +19,8 @@ export interface createDevice {
     iccid:string;
     name:string;
 }
+
+export interface mapDeviceWithBackend {
+    devices: number[];
+    backendId: number;
+}

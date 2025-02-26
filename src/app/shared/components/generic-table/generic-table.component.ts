@@ -48,21 +48,22 @@ export class GenericTableComponent {
   @Input() showSummary: boolean = true;
   @Input() activeOnes = '';
   @Input() expandedRows: any = {}; // Expanded rows
+  @Input() selectedItems: any[] = [];
 
   @Output() onNew = new EventEmitter<boolean>();
-  // @Output() onEdit = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
   @Output() onDeleteSelected = new EventEmitter<any[]>();
   @Output() onImport = new EventEmitter<any>();
   @Output() onExport = new EventEmitter<void>();
   @Output() configActionClicked = new EventEmitter<{ action: string; item: any }>();
   @Output() nestedConfigActionClicked = new EventEmitter<{ action: string; item: any }>();
+  @Output() toolbarCustomActionClicked = new EventEmitter<{ action: string; event?:any }>();
   @Output() rowExpand = new EventEmitter<any>(); // Event emitter for row expand
   @Output() rowCollapse = new EventEmitter<any>(); // Event emitter for row collapse
+  @Output() selectionChange = new EventEmitter<any>();
 
   @ViewChild('dt') table!: Table;
 
-  selectedItems: any[] = [];
 
 
 
@@ -83,6 +84,10 @@ export class GenericTableComponent {
     this.rowCollapse.emit(event);
   }
 
+  onSelectionChange(event: any[]) {
+    this.selectionChange.emit(event);
+  }
+
 
   // Method to handle button clicks
   handleActionClick(action: string, item: any) : void {    
@@ -91,6 +96,10 @@ export class GenericTableComponent {
 
   handleNestedActionClick(action: string, item: any) : void {    
     this.nestedConfigActionClicked.emit({ action, item });
+  }
+
+  handleCustomToolbarActionClick(action: string, event?:any) : void {
+    this.toolbarCustomActionClicked.emit({ action, event });
   }
 
 

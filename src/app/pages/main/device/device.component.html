@@ -21,7 +21,8 @@
 </div>
 <div class="flex flex-col gap-6 mt-6">
     <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
-        <app-generic-table [loading]="loading" [data]="tableData" [config]="tableConfig" [title]="'Devices'" [showActions]="true" [activeOnes]="activeOnes" (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)"/>
+        <app-generic-table [loading]="loading" [data]="tableData" [selectedItems]="selectedDevices" [config]="tableConfig" [title]="'Devices'" [showActions]="true" [activeOnes]="activeOnes" (selectionChange)="onSelectionChange($event)"
+        (onNew)="handleOnNew($event)" (configActionClicked)="onConfigActionClicked($event)" (toolbarCustomActionClicked)="handleToolbarCustomActionClicked($event)" />
     </div>
     <!-- <div class="flex gap-6 xl:flex-row flex-col">
         <div class="flex-1 border border-surface rounded-2xl py-5 px-7">
@@ -49,7 +50,7 @@
                 </div>
             </div>
             <div class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
-                <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                <div class="h-1.5/3 flex flex-col p-3 rounded-xl bg-emphasis">
                     <div class="flex items-start justify-between">
                         <div class="leading-6 font-medium text-color">Recieved Configuration</div>
                     </div>
@@ -67,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                <div class="h-1.5/3 flex flex-col p-3 rounded-xl bg-emphasis">
                     <div class="flex items-start justify-between">
                         <div class="leading-6 font-medium text-color">Saved Configuration</div>
                     </div>
@@ -122,6 +123,54 @@
                             </div>
                             <div class="flex justify-end p-3">
                                 <p-button styleClass="flex" (onClick)="handleCreateDevice()" icon="pi pi-check-circle" label="Save" severity="primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    } @else if(currentState === 'map_with_backend'){
+        <ng-template #headless>
+            <div class="flex flex-col h-screen overflow-auto">
+                <div class="">
+                    <div class="flex align-items-center gap-3 p-6">
+                        <p-button severity="info" text icon="pi pi-cog text-3xl"/>
+                        <div class="flex-1">
+                            <div class="leading-6 text-color font-medium">Backend Mapping</div>
+                            <p-tag [severity]="'info'" [value]="'Device'" />
+                        </div>
+                        
+                        <p-button pTooltip="Close" tooltipPosition="bottom" (onClick)="drawerVisible = false" icon="pi pi-times-circle" text rounded severity="danger" />
+                    </div>
+                </div>
+                <div class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
+                    <div class="h-1.5/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                        <div class="flex items-start justify-between">
+                            <div class="leading-6 font-medium text-color">Device Backend Mapping</div>
+                        </div>
+                        <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg overflow-hidden">
+                            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2 p-2">
+                                @for (data of deviceBackendMappingSettings; track data.key) {
+                                    <div class="flex flex-col p-2 bg-white dark:bg-surface-800 rounded-lg">
+                                        <label class="text-sm leading-5 font-medium text-color">{{ data.name }}</label>
+                                        @switch (data.inputType) {
+                                            @case ('dropdown') {
+                                                <p-select appendTo="body" [(ngModel)]="device[data.key]"
+                                                [filter]="true" [options]="data.key === 'stateId' ? stateOptions : data.key === 'backendId' ? backendOptions : [] " optionLabel="name"
+                                                [placeholder]="data.placeholder" class="mt-1 w-full" (onChange)="handleDrawerDrpDownChange($event,data)" />
+                                            }
+                                            @default {
+                                                <input pInputText [(ngModel)]="device[data.key]" type="text"
+                                                [placeholder]="data.placeholder"
+                                                class="mt-1 w-full" />
+                                            }
+                                        }
+                                    </div>
+                                }
+                                
+                            </div>
+                            <div class="flex justify-end p-3">
+                                <p-button styleClass="flex" (onClick)="handleBackendMappingSave()" icon="pi pi-check-circle" label="Save" severity="primary" />
                             </div>
                         </div>
                     </div>

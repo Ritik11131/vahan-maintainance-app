@@ -14,7 +14,18 @@ export const deviceManagementTableConfig: TableConfig = {
     showNew: true,
     // showDelete: true,
     // showImport: true,
-    showExport: true
+    showExport: true,
+    customButtons: [
+      {
+        id: 1,
+        key: 'map_with_backend',
+        label: 'Map with Backend', // Clear and specific
+        tooltip: 'Map Selected Devices with your backend ', // Provides context
+        icon: 'pi pi-list-check',
+        isSelectionDependent: true,
+        severity: 'contrast'
+      }
+    ]
   },
   actions: {
     showEdit: false,
@@ -30,7 +41,7 @@ export const deviceManagementTableConfig: TableConfig = {
   },
   paginator: true,
   globalFilter: true,
-  selectionMode: 'single',
+  selectionMode: 'multiple',
   minWidth: '50rem',
   showCurrentPageReport: true,
   rowHover: true,
