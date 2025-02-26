@@ -109,12 +109,13 @@ export class DeviceComponent {
     }
   }
 
-  async getDeviceFullConfigByPingId(id: number) {
+  async getDeviceFullConfigByPingId(item: any) {
+    const { id, isConfigMatched } = item;
     try {
       const response: IResponseInterface = await this.deviceMaintenanceService.getPingById(id);
       
       // Destructure the response data
-      const { latitude, longitude, isConfigMatched, attributes, protocol, firmware } = response?.data || {};
+      const { latitude, longitude, attributes, protocol, firmware } = response?.data || {};
       
       // Update Google Map coordinates
       this.googleMapBtnObj.lat = latitude;
@@ -171,7 +172,7 @@ export class DeviceComponent {
     switch (event.action) {
       case 'show_config':
         console.log(event.item);
-        await this.getDeviceFullConfigByPingId(event.item.pingId);
+        await this.getDeviceFullConfigByPingId(event.item);
         await this.operateDeviceConfidurationByID(event.item.id);
         // Logic for showing config
         break;
