@@ -31,7 +31,7 @@ export class BackendComponent implements OnInit {
   backend!: BackendData;
   command!:any;
   stateOptions:any[] = [];
-  defaultSelectedState!:any;
+  defaultSelectedState: any = null;
   drawerSelectedDrpDwnValue!:any;
   backendCreateEditSettings:any[] = backendCreateEditSettings;
   updateCommandtestSettings:any[] = updateCommandtestSettings;
@@ -106,7 +106,9 @@ export class BackendComponent implements OnInit {
       try {
         const response: IResponseInterface = await this.stateService.fetchStatesList();
         this.stateOptions = response?.data;
-        this.defaultSelectedState = this.drawerSelectedDrpDwnValue = response?.data[0];
+        if(!this.defaultSelectedState) {
+          this.defaultSelectedState = this.drawerSelectedDrpDwnValue = response?.data[0];
+        }
         console.log(this.defaultSelectedState);
       } catch (error) {
         this.stateOptions = [];
