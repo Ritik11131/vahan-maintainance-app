@@ -5,6 +5,8 @@ export const deviceManagementTableConfig: TableConfig = {
     { field: 'serialNo', header: 'Serial No', filter: false },
     { field: 'imei', header: 'Imei', filter: false, },
     { field: 'iccid', header: 'Iccid', filter: false, },
+    { field: 'stateName', header: 'State', filter: false, },
+    { field: 'backendName', header: 'Backend', filter: false, },
     { field: 'isConfigMatched', header: 'Configuration', filter: false, displayType: 'chip' },
     { field: 'lastUpdated', header: 'Last Updated At', filter: false, displayType:'date' },
   ],

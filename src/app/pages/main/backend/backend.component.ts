@@ -50,26 +50,45 @@ export class BackendComponent implements OnInit {
   }
 
   async loadTableDataWithStateID(id: number) {
+    this.loading = true;
     try {
       const response: IResponseInterface = await this.backendService.fetchBackendListByStateId(id);
-
-      // Use Promise.all to wait for all promises to resolve
-      const backendList = await Promise.all(response?.data?.map(async (backend: any) => {
-        const commandResponse = await this.backendService.getBackendCommandList(backend.id);
-        backend.nested = commandResponse?.data?.commands; // Assign the commands to the backend object
-        return backend; // Return the modified backend object
-      }));
-
+      const backendData = response?.data || [];
+  
+      // Use Promise.allSettled to ensure partial failures don't break the function
+      const backendList = await Promise.allSettled(
+        backendData.map(async (backend: any) => {
+          try {
+            const commandResponse = await this.backendService.getBackendCommandList(backend.id);
+            const commands = commandResponse?.data?.commands || [];
+            
+            return {
+              ...backend,
+              nested: commands.map((command: any) => ({
+                ...command,
+                commandKey: command.key?.commandKey || ''
+              }))
+            };
+          } catch (error) {
+            console.error(`Failed to fetch commands for backend ID ${backend.id}:`, error);
+            return { ...backend, nested: [] }; // Return backend with empty nested commands on failure
+          }
+        })
+      );
+  
+      // Extract only fulfilled results
       this.tableData = backendList
-
-      console.log(backendList);
-
-      this.loading = false;
+        .filter(result => result.status === 'fulfilled')
+        .map(result => (result as PromiseFulfilledResult<any>).value);
+  
+      console.log(this.tableData);
     } catch (error) {
+      console.error('Error fetching backend list:', error);
+    } finally {
       this.loading = false;
-
     }
   }
+  
 
 
   async handleChangeState(event:any) {
@@ -112,6 +131,8 @@ export class BackendComponent implements OnInit {
         console.log(this.defaultSelectedState);
       } catch (error) {
         this.stateOptions = [];
+      } finally {
+        this.loading = false;
       }
     }
 
