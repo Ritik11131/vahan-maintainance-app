@@ -114,7 +114,7 @@ export class DeviceComponent {
       const response: IResponseInterface = await this.deviceMaintenanceService.getPingById(id);
       
       // Destructure the response data
-      const { latitude, longitude, isConfigMatched, attributes } = response?.data || {};
+      const { latitude, longitude, isConfigMatched, attributes, protocol, firmware } = response?.data || {};
       
       // Update Google Map coordinates
       this.googleMapBtnObj.lat = latitude;
@@ -130,7 +130,11 @@ export class DeviceComponent {
   
       // Update the values in deviceSettings based on the parsed attributes
       this.deviceSettings.forEach(setting => {
-        if (parsedAttributes.hasOwnProperty(setting.key)) {
+        if (setting.key === 'version') {
+          setting.value = protocol;
+        } else if (setting.key === 'firmware') {
+          setting.value = firmware;
+        } else if (parsedAttributes.hasOwnProperty(setting.key)) {
           setting.value = parsedAttributes[setting.key];
         }
       });

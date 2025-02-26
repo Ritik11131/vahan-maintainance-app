@@ -20,12 +20,12 @@ import { UiService } from '@/app/core/services/ui.service';
 import { GenericDrawerComponent } from '@/app/shared/components/generic-drawer/generic-drawer.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { GeneralComponent } from "./settings/general/general.component";
-import { DeviceComponent } from "./device/device.component";
+import { DeviceConfigurationsComponent } from './settings/device-configurations/device-configurations.component';
 
 @Component({
   selector: 'app-main',
   imports: [CommonModule, ButtonModule, InputTextModule, CardModule, ToastModule, DividerModule, SelectModule, MultiSelectModule,
-    AvatarModule, RouterModule, FormsModule, TooltipModule, OverlayBadgeModule, DrawerModule, GenericDrawerComponent, SelectButtonModule, GeneralComponent, DeviceComponent],
+    AvatarModule, RouterModule, FormsModule, TooltipModule, OverlayBadgeModule, DrawerModule, GenericDrawerComponent, SelectButtonModule, GeneralComponent, DeviceConfigurationsComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

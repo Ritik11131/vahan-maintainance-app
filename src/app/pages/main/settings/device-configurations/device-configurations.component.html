@@ -1,0 +1,59 @@
+<div class="flex flex-col gap-4">
+    @for (section of sections; track section) {
+        <div class="flex flex-col gap-4">
+            <div class="p-3 rounded-xl bg-emphasis">
+                <div class="flex items-start justify-between">
+                    <div class="font-medium text-color">{{ section.title }}</div>
+                </div>
+                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 rounded-lg">
+                    <div class="grid md:grid-cols-2 gap-2 p-2">
+                        @for (field of section.fields; track field) {
+                            <div class="flex flex-col bg-white dark:bg-surface-800 p-3 rounded-lg">
+                                <label class="text-sm font-medium text-color mb-2">{{ field.label }}</label>
+                    
+                                <!-- Dynamic Input Types -->
+                                @switch (field.type) {
+                                    @case ('multiselect') {
+                                        <p-multiselect appendTo="body" 
+                                            [(ngModel)]="field.selectedValue" 
+                                            [options]="field.options"
+                                            optionLabel="name"
+                                            placeholder="{{ field.placeholder }}"
+                                            (ngModelChange)="updateSectionValidity(section)">
+                                        </p-multiselect>
+                                    }
+                                    
+                                    @case ('select') {
+                                        <p-select appendTo="body" 
+                                            [(ngModel)]="field.selectedValue" 
+                                            [options]="field.options"
+                                            optionLabel="name"
+                                            placeholder="{{ field.placeholder }}"
+                                            [filter]="true"
+                                            (ngModelChange)="updateSectionValidity(section)">
+                                        </p-select>
+                                    }
+                    
+                                    @case ('text') {
+                                        <input type="text" 
+                                            [(ngModel)]="field.value" 
+                                            class="w-full mt-1 p-2 border rounded"
+                                            (input)="updateSectionValidity(section)">
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="flex justify-end p-3">
+                        <p-button styleClass="flex"
+                            icon="pi pi-check-circle"
+                            label="Save"
+                            severity="primary"
+                            [disabled]="!section.valid" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
