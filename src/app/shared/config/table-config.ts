@@ -20,7 +20,7 @@ export const deviceManagementTableConfig: TableConfig = {
         id: 1,
         key: 'map_with_backend',
         label: 'Map with Backend', // Clear and specific
-        tooltip: 'Map Selected Devices with your backend ', // Provides context
+        tooltip: 'Select a Device', // Provides context
         icon: 'pi pi-list-check',
         isSelectionDependent: true,
         severity: 'contrast'

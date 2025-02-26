@@ -37,8 +37,8 @@
                             [ngClass]="{
                                 'w-12 justify-center py-4': isSlimMenu,
                                 'w-full': !isSlimMenu,
-                                'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title,
-                                'text-primary-contrast bg-primary hover:bg-primary-emphasis': selectedSampleAppsSidebarNav === navItem.title
+                                'text-muted-color hover:bg-emphasis bg-transparent': uiService.selectedSampleAppsSidebarNav !== navItem.title,
+                                'text-primary-contrast bg-primary hover:bg-primary-emphasis': uiService.selectedSampleAppsSidebarNav === navItem.title
                             }">
                             <i [class]="navItem.icon"></i>
                             <span [ngClass]="{
@@ -79,8 +79,8 @@
                             [ngClass]="{
                                 'w-12 justify-center py-4': isSlimMenu,
                                 'w-full': !isSlimMenu,
-                                'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title,
-                                'text-primary-contrast bg-primary hover:bg-primary-emphasis': selectedSampleAppsSidebarNav === navItem.title
+                                'text-muted-color hover:bg-emphasis bg-transparent': uiService.selectedSampleAppsSidebarNav !== navItem.title,
+                                'text-primary-contrast bg-primary hover:bg-primary-emphasis': uiService.selectedSampleAppsSidebarNav === navItem.title
                             }">
                             <i [class]="navItem.icon"></i>
                             <span [class]="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>

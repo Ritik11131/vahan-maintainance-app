@@ -1,4 +1,5 @@
 import { Injectable, signal, type TemplateRef } from "@angular/core"
+import { Router } from "@angular/router";
 import { MessageService } from "primeng/api"
 
 
@@ -6,15 +7,19 @@ import { MessageService } from "primeng/api"
   providedIn: "root",
 })
 export class UiService {
+
+  selectedSampleAppsSidebarNav: any;
   private isDrawerOpenSignal = signal(false)
   private drawerContentSignal = signal<TemplateRef<any> | null>(null)
   private drawerHeaderSignal = signal<string>("Drawer")
+
+  anotherComponentAction = signal<boolean | null>(null);
 
   isDrawerOpen = this.isDrawerOpenSignal.asReadonly()
   drawerContent = this.drawerContentSignal.asReadonly()
   drawerHeader = this.drawerHeaderSignal.asReadonly()
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService, private router:Router) {}
 
   openDrawer(content: TemplateRef<any>, header = "Drawer") {
     this.drawerContentSignal.set(content)
@@ -30,6 +35,18 @@ export class UiService {
 
   showToast(severity: "success" | "info" | "warn" | "error", summary: string, detail: string) {
     this.messageService.add({ severity, summary, detail })
+  }
+
+  setSelectedSampleAppsSidebarNav(title: any, href: string) {
+    localStorage.setItem('lastSelectedNav', [title, href].join(','));
+    this.selectedSampleAppsSidebarNav = title;
+    this.router.navigate([href])
+  }
+
+
+  triggerComponentAction(value: boolean) {
+    this.anotherComponentAction.set(null); // Reset first to ensure a change is detected
+    setTimeout(() => this.anotherComponentAction.set(value), 0); // Delay to allow reset to take effect
   }
 }
 

@@ -15,6 +15,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
+import { UiService } from '@/app/core/services/ui.service';
 
 @Component({
   selector: 'app-backend',
@@ -37,7 +38,7 @@ export class BackendComponent implements OnInit {
   updateCommandtestSettings:any[] = updateCommandtestSettings;
   currentState:string = '';
 
-  constructor(private stateService:StateService, private backendService:BackendService, private commandService:CommandKeyService ) {}
+  constructor(private stateService:StateService, private backendService:BackendService, private commandService:CommandKeyService, private uiService:UiService, ) {}
 
   ngOnInit(): void {
       this.loadBackendService();
@@ -47,6 +48,11 @@ export class BackendComponent implements OnInit {
     await this.fetchAllStates();
     await this.loadTableDataWithStateID(this.defaultSelectedState.id);
     
+  }
+
+  openStateDrawer() {
+    this.uiService.setSelectedSampleAppsSidebarNav('State', '/main/state');
+    this.uiService.triggerComponentAction(true);
   }
 
   async loadTableDataWithStateID(id: number) {
@@ -158,6 +164,12 @@ export class BackendComponent implements OnInit {
         this.command = { ...event?.item }
       // Add more cases as needed
     }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.uiService.anotherComponentAction.set(null);
   }
 
 }

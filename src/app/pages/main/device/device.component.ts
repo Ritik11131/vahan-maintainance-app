@@ -8,7 +8,7 @@ import { IResponseInterface } from '@/app/shared/interfaces/auth';
 import { DeviceMaintenanceService } from '@/app/core/services/device-maintenance.service';
 import { FormsModule } from '@angular/forms';
 import { DrawerModule } from 'primeng/drawer';
-import { deviceBackendMappingSettings, deviceCreateEditSettings, deviceEditableSettings, deviceSettings } from '@/app/shared/constants';
+import { deviceBackendMappingSettings, deviceCreateEditSettings, deviceEditableSettings, deviceInfoSettings, deviceSettings } from '@/app/shared/constants';
 import { DeviceData } from '@/app/shared/interfaces/getData';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TooltipModule } from 'primeng/tooltip';
@@ -33,6 +33,7 @@ export class DeviceComponent {
   tableConfig: TableConfig = deviceManagementTableConfig;
   drawerVisible: boolean = false;
   deviceSettings: any[] = deviceSettings;
+  deviceInfoSettings: any[] = deviceInfoSettings;
   deviceEditableSettings :any[] = deviceEditableSettings;
   deviceCreateEditSettings: any[] = deviceCreateEditSettings;
   deviceBackendMappingSettings: any[] = deviceBackendMappingSettings;
@@ -205,7 +206,7 @@ export class DeviceComponent {
     this.currentState = event.action;
     switch (event.action) {
       case 'show_config':
-        console.log(event.item);
+        this.deviceInfoSettings = this.deviceInfoSettings.map(f => ({ ...f, value: event.item[f.key] ?? f.value }));
         await this.getDeviceFullConfigByPingId(event.item);
         await this.operateDeviceConfidurationByID(event.item.id);
         // Logic for showing config

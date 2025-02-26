@@ -64,7 +64,7 @@
             [label]="config.toolbar?.exportLabel || 'Export'"
             icon="pi pi-upload"
             severity="secondary"
-            (onClick)="onExport.emit()"
+            (onClick)="dt.exportCSV()"
           />
         }
       </ng-template>

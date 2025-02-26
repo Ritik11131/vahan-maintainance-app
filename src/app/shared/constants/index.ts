@@ -120,3 +120,9 @@ export const deviceBackendMappingSettings = [
     { name: 'Select State', key: 'stateId',inputType:'dropdown', placeholder: 'Select State' },
     { name: 'Select Backend', key: 'backendId',inputType:'dropdown', placeholder: 'Select Backend' }
 ];
+
+export const deviceInfoSettings = [
+    { key: 'imei', name: 'Imei', value:'' },
+    { key: 'stateName', name: 'State', value:'' },
+    { key: 'backendName', name: 'Backend', value:'' },
+]

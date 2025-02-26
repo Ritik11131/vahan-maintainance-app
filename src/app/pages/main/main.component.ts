@@ -38,7 +38,6 @@ export class MainComponent {
   selectedSampleOption: any;
   sampleAppsSidebarNavs: any = sidebarNavigations;
   sampleAppsSidebarNavsMore: any = moreSidebarNavigations;
-  selectedSampleAppsSidebarNav: any = 'Device';
   isSlimMenu: boolean = true;
   settingsOptions = [
     { label: 'General', value: 'general' },
@@ -47,15 +46,17 @@ export class MainComponent {
 
   selectedSetting = this.settingsOptions[0]; // Default: General Settings
 
-  constructor(private router: Router,public uiService:UiService,private authService:AuthService) {
+  constructor(private router: Router,public uiService:UiService, private authService:AuthService) {
     const lastSelectedNav = localStorage.getItem('lastSelectedNav')?.split(',');
-    this.setSelectedSampleAppsSidebarNav(lastSelectedNav?.[0] || 'Device', lastSelectedNav?.[1] || '/main/device');
+    this.uiService.setSelectedSampleAppsSidebarNav(lastSelectedNav?.[0] || 'Device', lastSelectedNav?.[1] || '/main/device');
+    // this.setSelectedSampleAppsSidebarNav(lastSelectedNav?.[0] || 'Device', lastSelectedNav?.[1] || '/main/device');
   }
 
   setSelectedSampleAppsSidebarNav(title: any, href: string) {
-    localStorage.setItem('lastSelectedNav', [title, href].join(','));
-    this.selectedSampleAppsSidebarNav = title;
-    this.router.navigate([href])
+    this.uiService.setSelectedSampleAppsSidebarNav(title, href);
+    // localStorage.setItem('lastSelectedNav', [title, href].join(','));
+    // this.selectedSampleAppsSidebarNav = title;
+    // this.router.navigate([href])
   }
 
   handleMoreNavClick(event: any) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { GenericTableComponent } from '@/app/shared/components/generic-table/generic-table.component';
 import { TableConfig } from '@/app/shared/interfaces/table';
 import { stateManagementTableConfig } from '@/app/shared/config/table-config';
@@ -12,6 +12,7 @@ import { TagModule } from 'primeng/tag';
 import { stateCreateEditSettings } from '@/app/shared/constants';
 import { createState } from '@/app/shared/interfaces/postData';
 import { InputTextModule } from 'primeng/inputtext';
+import { UiService } from '@/app/core/services/ui.service';
 
 
 @Component({
@@ -30,7 +31,14 @@ export class StateComponent {
   state!:StateData
 
 
-  constructor(private stateService: StateService) { }
+  constructor(private stateService: StateService, private uiService:UiService) {
+    effect(() => {
+      const value = this.uiService.anotherComponentAction();      
+      if (value !== null) {
+        this.handleOnNew(value);
+      }
+    });
+   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
