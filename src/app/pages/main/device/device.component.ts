@@ -188,7 +188,7 @@ export class DeviceComponent {
       const response: IResponseInterface = await this.deviceMaintenanceService.getDeviceConfigurationById(id);
       
       const parsedAttributes = JSON.parse(response?.data?.attributes);      
-      deviceEditableSettings.forEach(setting => {
+      this.deviceEditableSettings.forEach(setting => {
         if (parsedAttributes.hasOwnProperty(setting.key)) {
           setting.value = parsedAttributes[setting.key];
         }
@@ -207,6 +207,8 @@ export class DeviceComponent {
     switch (event.action) {
       case 'show_config':
         this.deviceInfoSettings = this.deviceInfoSettings.map(f => ({ ...f, value: event.item[f.key] ?? f.value }));
+        this.deviceSettings.forEach(setting => {setting.value = ''});
+        this.deviceEditableSettings.forEach(setting => {setting.value = ''});
         await this.getDeviceFullConfigByPingId(event.item);
         await this.operateDeviceConfidurationByID(event.item.id);
         // Logic for showing config
