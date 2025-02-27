@@ -13,6 +13,7 @@ import { stateCreateEditSettings } from '@/app/shared/constants';
 import { createState } from '@/app/shared/interfaces/postData';
 import { InputTextModule } from 'primeng/inputtext';
 import { UiService } from '@/app/core/services/ui.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,11 +32,13 @@ export class StateComponent {
   state!:StateData
 
 
-  constructor(private stateService: StateService, private uiService:UiService) {
+  constructor(private stateService: StateService, private uiService:UiService, private router:Router) {
     effect(() => {
-      const value = this.uiService.anotherComponentAction();      
-      if (value !== null) {
-        this.handleOnNew(value);
+      const {isActive, value} = this.uiService.anotherComponentAction();  
+      console.log(value);
+          
+      if (value && value?.key === 'back_to_state') {
+        this.handleOnNew(isActive);
       }
     });
    }
@@ -70,6 +73,11 @@ export class StateComponent {
       console.log(response);
       this.drawerVisible = false;
       await this.fetchAllStates();
+      const { isActive } = this.uiService.anotherComponentAction();
+      if (isActive) {
+        this.uiService.anotherComponentAction.set({isActive: false, value: { key: 'back_to_state', json: response?.data } });
+        setTimeout(() => this.uiService.setSelectedSampleAppsSidebarNav('Backend', '/main/backend'), 100);
+      }  
     } catch (error) {
 
     }

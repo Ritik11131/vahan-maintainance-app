@@ -52,7 +52,7 @@ export class BackendComponent implements OnInit {
 
   openStateDrawer() {
     this.uiService.setSelectedSampleAppsSidebarNav('State', '/main/state');
-    this.uiService.triggerComponentAction(true);
+    this.uiService.triggerComponentAction(true, {key:'back_to_state',  json: null});
   }
 
   async loadTableDataWithStateID(id: number) {
@@ -129,10 +129,16 @@ export class BackendComponent implements OnInit {
    async fetchAllStates() {
     this.loading = true;
       try {
+        const {isActive, value} = this.uiService.anotherComponentAction();
         const response: IResponseInterface = await this.stateService.fetchStatesList();
         this.stateOptions = response?.data;
         if(!this.defaultSelectedState) {
           this.defaultSelectedState = this.drawerSelectedDrpDwnValue = response?.data[0];
+        }
+
+        if(!isActive && value && value?.key === 'back_to_state' && value?.json) {
+          this.defaultSelectedState = this.drawerSelectedDrpDwnValue = value?.json;
+          this.uiService.triggerComponentAction(false, {key:null,  json: null});
         }
         console.log(this.defaultSelectedState);
       } catch (error) {
@@ -165,11 +171,4 @@ export class BackendComponent implements OnInit {
       // Add more cases as needed
     }
   }
-
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.uiService.anotherComponentAction.set(null);
-  }
-
 }

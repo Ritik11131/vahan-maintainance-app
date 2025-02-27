@@ -13,7 +13,7 @@ export class UiService {
   private drawerContentSignal = signal<TemplateRef<any> | null>(null)
   private drawerHeaderSignal = signal<string>("Drawer")
 
-  anotherComponentAction = signal<boolean | null>(null);
+  anotherComponentAction = signal<{isActive:boolean, value:any }>({isActive: false, value: null });
 
   isDrawerOpen = this.isDrawerOpenSignal.asReadonly()
   drawerContent = this.drawerContentSignal.asReadonly()
@@ -44,9 +44,9 @@ export class UiService {
   }
 
 
-  triggerComponentAction(value: boolean) {
-    this.anotherComponentAction.set(null); // Reset first to ensure a change is detected
-    setTimeout(() => this.anotherComponentAction.set(value), 0); // Delay to allow reset to take effect
+  triggerComponentAction(isActive:boolean, value: any) {
+    this.anotherComponentAction.set({isActive: false, value:null}); // Reset first to ensure a change is detected
+    setTimeout(() => this.anotherComponentAction.set({isActive, value}), 0); // Delay to allow reset to take effect
   }
 }
 
