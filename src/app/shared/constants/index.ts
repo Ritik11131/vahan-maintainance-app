@@ -66,6 +66,8 @@ export const deviceSettings = [
     { name: 'Secondary IP', key: 'ip1', value: '', placeholder: 'Update Ip1' },
     { name: 'Last Ping Secondary', key: 'ip1Ping', value: '', placeholder: 'Update Last Ping Secondary' },
     { name: 'Emergency IP', key: 'ip2', value: '', placeholder: 'Update Ip2' },
+    { name: 'Tertiary IP', key: 'ip3', value: '', placeholder: 'Update Ip3' },
+    { name: 'IPE', key: 'ipe', value: '', placeholder: 'Update Ipe' },
     { name: 'URL', key: 'url', value: '', placeholder: 'Update URL' },
     { name: 'Protocol', key: 'pro', value: '', placeholder: 'Update URL' },
     { name: 'Version', key: 'version', value: '', placeholder: 'Update URL' },
